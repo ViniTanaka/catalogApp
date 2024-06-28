@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/header/header";
-import { CartControl } from "./components/header/cart-control";
+import { FilterContextProvider } from "./contexts/filter-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header />
-      <body className={inter.className}>{children}</body>
+      
+      <body className={inter.className}>
+      <FilterContextProvider>
+        <Header />
+        {children}
+      </FilterContextProvider>
+      </body>
     </html>
   );
 }
