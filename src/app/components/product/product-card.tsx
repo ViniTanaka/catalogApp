@@ -13,7 +13,6 @@ interface ProductCardProps{
 
 const Card = styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
@@ -47,6 +46,7 @@ const Card = styled.div`
 
 const ValuesDiv = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
@@ -69,13 +69,13 @@ const Principal = styled.div`
 export function ProductCard(props: ProductCardProps){ 
     return (
         <Card>
-            <Principal>
                 <Image
                     src={props.image}
                     alt={props.title}
                     width={800}
                     height={500}
                     />
+            <Principal>
                 <h3>{props.title}</h3>
                 <p>{props.description}</p>
             </Principal>

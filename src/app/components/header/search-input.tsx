@@ -10,8 +10,16 @@ const SearchInput = styled.input`
 `;
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+    value:string;
+    handleChange: (value:string) => void
 }
 
 export function SearchInputComponent(props : InputProps){
-    return <SearchInput {...props} type="text" placeholder="Search..." />
+    return (
+        <SearchInput 
+        onChange={(event) => props.handleChange(event.target.value)}
+        {...props} 
+        type="text" 
+        placeholder="Search..." />
+    )
 }

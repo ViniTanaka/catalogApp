@@ -8,10 +8,12 @@ interface ProductsListProps{
 
 }
 
-const DivMain = styled.div`
+const DivContainer = styled.div`
     overflow: hidden;
     width: 60%;
     border: 1px solid #ccc;
+    background: white;
+
 
     ul {
         list-style: none;
@@ -24,7 +26,7 @@ const DivMain = styled.div`
 export function ProductList(props: ProductsListProps){
     const {data}= useProducts()
     return (
-        <DivMain>
+        <DivContainer>
             <Carousel
             autoPlay={false}
             showArrows={false}
@@ -45,6 +47,6 @@ export function ProductList(props: ProductsListProps){
                     weight={product.weight} 
                     key={product.id}/>)}
             </Carousel>
-        </DivMain>
+        </DivContainer>
     )
 }

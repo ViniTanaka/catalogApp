@@ -1,5 +1,5 @@
 "use client"
-import { FilterType } from "@/app/types/filter-typex"
+import { FilterCategory } from "@/app/types/filter-category"
 import { useFilter } from "@/hooks/useFilter"
 import styled from "styled-components"
 
@@ -27,17 +27,19 @@ const FilterItem = styled.li<FilterItemProps>`
 
     border-bottom: ${props => props.selected ? '4px solid' : ''}
     `
-export function FilterByType(){
-    const {type, setType} = useFilter()
+export function FilterBycategory(){
+    const {category, setCategory} = useFilter()
 
-    const handleChangeType = (value: FilterType) => {
-        setType(value)
+    const handleChangecategory = (value : FilterCategory) => {
+        setCategory(value)
     }
     return (
         <FilterList>
-            <FilterItem selected={type === FilterType.ALL} onClick={() => handleChangeType(FilterType.ALL)}>Todos os produtos</FilterItem>
-            <FilterItem selected={type === FilterType.products} onClick={() => handleChangeType(FilterType.products)}>teste1</FilterItem>
-            <FilterItem selected={type === FilterType.services} onClick={() => handleChangeType(FilterType.services)}>teste2</FilterItem>
+            <FilterItem selected={category === FilterCategory.ALL} onClick={() => handleChangecategory(FilterCategory.ALL)}>Todos os produtos</FilterItem>
+            <FilterItem selected={category === FilterCategory.beauty} onClick={() => handleChangecategory(FilterCategory.beauty)}>beauty</FilterItem>
+            <FilterItem selected={category === FilterCategory.fragrances} onClick={() => handleChangecategory(FilterCategory.fragrances)}>fragrances</FilterItem>
+            <FilterItem selected={category === FilterCategory.groceries} onClick={() => handleChangecategory(FilterCategory.groceries)}>groceries</FilterItem>
+            <FilterItem selected={category === FilterCategory["home-decoration"]} onClick={() => handleChangecategory(FilterCategory["home-decoration"])}>home decoration</FilterItem>
         </FilterList>
         )
 }

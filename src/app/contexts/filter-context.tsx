@@ -1,14 +1,14 @@
 "use client"
 import { ReactNode, createContext, useState } from "react";
-import { FilterType } from "../types/filter-typex";
+import { FilterCategory } from "../types/filter-category";
 
 export const filterContext = createContext({
     search: "",
     page:0,
-    type: FilterType.ALL,
+    category: FilterCategory.ALL,
     setSearch: (value: string) => {},
     setPage: (value: number) => {},
-    setType: (value: FilterType) => {}
+    setCategory: (value: FilterCategory) => {}
 })
 
 interface ProviderProps{
@@ -17,9 +17,9 @@ interface ProviderProps{
 export function FilterContextProvider({children}:ProviderProps){
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(0)
-    const [type, setType] = useState(FilterType.ALL)
+    const [category, setCategory] = useState(FilterCategory.ALL)
     return (
-        <filterContext.Provider value={{search, setSearch, page, setPage, type, setType}}>
+        <filterContext.Provider value={{search, setSearch, page, setPage, category, setCategory}}>
             {children}
         </filterContext.Provider>
     )
