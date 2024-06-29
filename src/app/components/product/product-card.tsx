@@ -19,9 +19,14 @@ const Card = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 80%;
-    border: 1px solid #ccc;
-    
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     img {
         width: 256px;
         height: 300px;
@@ -51,14 +56,14 @@ const ValuesDiv = styled.div`
 `
 
 const Principal = styled.div`
-    display: flex;Principal
-    flex-direction: column;
+    display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
     width: 80%;
+    gap: 30px;
 `
 
 export function ProductCard(props: ProductCardProps){ 
@@ -75,7 +80,7 @@ export function ProductCard(props: ProductCardProps){
                 <p>{props.description}</p>
             </Principal>
             <ValuesDiv>
-                <p>R$ {props.price}</p>
+                <h3>R$ {props.price}</h3>
                 <p>{props.weight} KG</p>
             </ValuesDiv>
             </Card>

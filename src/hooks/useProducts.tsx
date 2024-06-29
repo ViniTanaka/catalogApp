@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosPromise } from "axios";
 
 const fetcher = (): AxiosPromise<ProductsFetchResponse> => {
-  return axios.get(process.env.NEXT_PUBLIC_API_URL + '/products');
+  return axios.get('https://dummyjson.com/products');
 }
 
 export function useProducts() {

@@ -10,10 +10,8 @@ interface ProductsListProps{
 
 const DivMain = styled.div`
     overflow: hidden;
-    width: 80%;
-    position: absolute;
-    left: 20%;
-    bottom: 20%;
+    width: 60%;
+    border: 1px solid #ccc;
 
     ul {
         list-style: none;
