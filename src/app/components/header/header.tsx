@@ -13,16 +13,18 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 1rem;
+
 `
 export function Header(props: HeaderProps){
     const {setSearch, search}= useFilter();
+
     return (
         <TagHeader>
             <SearchInputComponent 
                 value = {search}
                 handleChange={setSearch}
             />
-            <CartControl />
+                <CartControl />
         </TagHeader>
     )
 }
