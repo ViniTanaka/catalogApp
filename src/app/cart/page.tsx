@@ -7,13 +7,13 @@ import { CartItem } from "../components/cart/cart-item";
 
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
     max-height: 100vh;
     max-width: 100vw;
     overflow: auto;
     position:relative;
+    gap:32px;
 `
 const CartListContainer = styled.div`
     display: flex;
@@ -33,6 +33,27 @@ const InfoList = styled.div`
     left: 5vw;
     top:10vh;
     
+`
+
+const CartResultContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background:white;
+    height:100vh;
+    width: 15vw;
+    padding: 10px;
+`
+const BtnCheckout = styled.button`
+    background: #115D8C;
+    width: 100%;
+    mix-blend-mode: multiply;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
 `
 export default function CartPage() {
     const { value, updateLocalStorage }= useLocalStorage<ProductInCart[]>('cart-items', [])
@@ -57,14 +78,14 @@ export default function CartPage() {
     }
     return (
         <Container>
-            <InfoList>
-                <BackBtn navigate="/"/>
-                <h3>Cart</h3>
-                <p>Total {value.length} products
-                    <span> R$ {cartTotal.toFixed(2)}</span>
-                </p>
-            </InfoList>
             <CartListContainer>
+                <InfoList>
+                    <BackBtn navigate="/"/>
+                    <h3>Cart</h3>
+                    <p>Total {value.length} products
+                        <span> R$ {cartTotal.toFixed(2)}</span>
+                    </p>
+                </InfoList>
                 <CartList>
                     {value.map((product) => 
                     <CartItem 
@@ -82,6 +103,11 @@ export default function CartPage() {
                     />) }
                 </CartList>
             </CartListContainer>
+            <CartResultContainer>
+                <h3>Order Summary</h3>
+                <h1>Total: R$ {cartTotal.toFixed(2)}</h1>
+                <BtnCheckout>Checkout</BtnCheckout>
+            </CartResultContainer>
         </Container>
     )
 }
