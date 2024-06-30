@@ -1,17 +1,16 @@
-"use client"
-import { useProduct } from "@/hooks/useProduct"
-import Image from "next/image"
-import styled from "styled-components"
+import { useState } from "react";
+import Image from "next/image";
+import styled from "styled-components";
 
-interface ProductCardProps{
-    images: string,
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    measure: string,
-    weight: number
-}   
+interface ProductCardProps {
+    images: string;
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    measure: string;
+    weight: number;
+}
 
 const Card = styled.div`
     display: flex;
@@ -32,19 +31,21 @@ const Card = styled.div`
         width: 256px;
         height: 300px;
     }
-    h3{
+
+    h3 {
         font-size: 16px;
         font-weight: bold;
         margin-bottom: 1rem;
         color: #000;
     }
-    p{
+
+    p {
         font-size: 14px;
         font-weight: normal;
         margin-bottom: 1rem;
         color: #000;
     }
-`
+`;
 
 const ValuesDiv = styled.div`
     display: flex;
@@ -55,8 +56,9 @@ const ValuesDiv = styled.div`
     padding: 0;
     margin: 0;
     width: 80%;
-    button{
-        background: #115D8C;
+
+    button {
+        background: #115d8c;
         mix-blend-mode: multiply;
         border-radius: 4px;
         color: white;
@@ -64,7 +66,7 @@ const ValuesDiv = styled.div`
         cursor: pointer;
         padding: 0.5rem;
     }
-`
+`;
 
 const Principal = styled.div`
     display: flex;
@@ -75,20 +77,19 @@ const Principal = styled.div`
     margin: 0;
     width: 80%;
     gap: 30px;
-`
+`;
 
-export function ProductCard(props: ProductCardProps){
+export function ProductCard(props: ProductCardProps) {
     const handleAddToCart = () => {
-        let cartItems = localStorage.getItem('cart-items');
-        if (cartItems) {
-            let cartItemsArray = JSON.parse(cartItems);
+        try {
+            let cartItems = localStorage.getItem('cart-items');
+            let cartItemsArray = cartItems ? JSON.parse(cartItems) : [];
+
             let existingProductIndex = cartItemsArray.findIndex((item: { id: number }) => item.id === props.id);
             
             if (existingProductIndex !== -1) {
-                // If the product already exists in the cart, increase its quantity
                 cartItemsArray[existingProductIndex].quantity += 1;
             } else {
-                // If the product does not exist in the cart, add it with quantity 1
                 cartItemsArray.push({
                     ...props,
                     quantity: 1,
@@ -97,26 +98,23 @@ export function ProductCard(props: ProductCardProps){
             }
     
             localStorage.setItem('cart-items', JSON.stringify(cartItemsArray));
-        } else {
-            // If there are no items in the cart, create a new cart with the product
-            const newCartItem = [
-                {
-                    ...props,
-                    id: props.id,
-                    quantity: 1
-                }
-            ];
-            localStorage.setItem('cart-items', JSON.stringify(newCartItem));
+
+            window.dispatchEvent(new CustomEvent('localStorageChange', {
+                detail: { key: 'cart-items', value: cartItemsArray }
+            }));
+        } catch (error) {
+            console.error("Failed to update cart items:", error);
         }
-    }
+    };
+
     return (
         <Card>
-                <Image
-                    src={props.images}
-                    alt={props.title}
-                    width={800}
-                    height={500}
-                    />
+            <Image
+                src={props.images}
+                alt={props.title}
+                width={800}
+                height={500}
+            />
             <Principal>
                 <h3>{props.title}</h3>
                 <p>{props.description}</p>
@@ -124,8 +122,8 @@ export function ProductCard(props: ProductCardProps){
             <ValuesDiv>
                 <h3>R$ {props.price}</h3>
                 <p>{props.weight} KG</p>
-                <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+                <button onClick={handleAddToCart}>Add to cart</button>
             </ValuesDiv>
-            </Card>
-    )
+        </Card>
+    );
 }
