@@ -18,7 +18,7 @@ const DivContainer = styled.div`
     ul {
         list-style: none;
     }
-        button {
+        button.control-arrow {
             display: none;
         }
 `
@@ -34,12 +34,14 @@ export function ProductList(props: ProductsListProps){
             showIndicators={false}
             showStatus={false}
             showThumbs={false}
+            selectedItem={1}
             infiniteLoop={true}
             stopOnHover={true}
             axis='vertical'>
             {data?.map(product=>
                 <ProductCard 
-                    image={product.images[0]} 
+                    id={product.id}
+                    images={product.images[0]} 
                     title={product.title} 
                     price={product.price} 
                     description={product.description} 

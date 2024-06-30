@@ -17,7 +17,6 @@ const mountQuery = (category:FilterCategory) => {
 }
 
 const fetcher = (category:string): AxiosPromise<ProductsFetchResponse> => {
-  console.log('https://dummyjson.com/products' + category)
   return axios.get('https://dummyjson.com/products' + category);
 }
 export function useProducts() {
