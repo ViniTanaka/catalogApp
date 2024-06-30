@@ -35,7 +35,7 @@ export function ProductList(props: ProductsListProps){
             showStatus={false}
             showThumbs={false}
             selectedItem={1}
-            infiniteLoop={true}
+            infiniteLoop={false}
             stopOnHover={true}
             axis='vertical'>
             {data?.map(product=>
