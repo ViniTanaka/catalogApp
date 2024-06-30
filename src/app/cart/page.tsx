@@ -4,6 +4,7 @@ import { BackBtn } from './../components/back-button';
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import {  ProductInCart } from "../types/product";
 import { CartItem } from "../components/cart/cart-item";
+import { useRouter } from "next/navigation";
 
 const Container = styled.div`
     display: flex;
@@ -76,15 +77,16 @@ export default function CartPage() {
         })
         updateLocalStorage(newValue)
     }
+    const router = useRouter();
+
+    const handleNavigate = () => {
+        router.push("/checkout")
+    }
     return (
         <Container>
             <CartListContainer>
                 <InfoList>
                     <BackBtn navigate="/"/>
-                    <h3>Cart</h3>
-                    <p>Total {value.length} products
-                        <span> R$ {cartTotal.toFixed(2)}</span>
-                    </p>
                 </InfoList>
                 <CartList>
                     {value.map((product) => 
@@ -106,7 +108,7 @@ export default function CartPage() {
             <CartResultContainer>
                 <h3>Order Summary</h3>
                 <h1>Total: R$ {cartTotal.toFixed(2)}</h1>
-                <BtnCheckout>Checkout</BtnCheckout>
+                <BtnCheckout onClick={handleNavigate}>Checkout</BtnCheckout>
             </CartResultContainer>
         </Container>
     )
