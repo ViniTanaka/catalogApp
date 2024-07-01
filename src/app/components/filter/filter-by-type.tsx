@@ -39,7 +39,7 @@ export function FilterBycategory(){
             <FilterItem selected={category === FilterCategory.beauty} onClick={() => handleChangecategory(FilterCategory.beauty)}>beauty</FilterItem>
             <FilterItem selected={category === FilterCategory.fragrances} onClick={() => handleChangecategory(FilterCategory.fragrances)}>fragrances</FilterItem>
             <FilterItem selected={category === FilterCategory.groceries} onClick={() => handleChangecategory(FilterCategory.groceries)}>groceries</FilterItem>
-            <FilterItem selected={category === FilterCategory["home-decoration"]} onClick={() => handleChangecategory(FilterCategory["home-decoration"])}>home decoration</FilterItem>
+            <FilterItem selected={category === FilterCategory.furniture} onClick={() => handleChangecategory(FilterCategory.furniture)}>furniture</FilterItem>
         </FilterList>
         )
 }
