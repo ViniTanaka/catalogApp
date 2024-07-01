@@ -79,6 +79,10 @@ const Principal = styled.div`
     gap: 30px;
 `;
 
+const CarouselLi = styled.li`
+    scroll-snap-align: center;
+    min-height: 35vh;
+`
 export function ProductCard(props: ProductCardProps) {
     const handleAddToCart = () => {
         try {
@@ -108,22 +112,24 @@ export function ProductCard(props: ProductCardProps) {
     };
 
     return (
-        <Card>
-            <Image
-                src={props.images}
-                alt={props.title}
-                width={800}
-                height={500}
-            />
-            <Principal>
-                <h3>{props.title}</h3>
-                <p>{props.description}</p>
-            </Principal>
-            <ValuesDiv>
-                <h3>R$ {props.price}</h3>
-                <p>{props.weight} KG</p>
-                <button onClick={handleAddToCart}>Add to cart</button>
-            </ValuesDiv>
-        </Card>
+        <CarouselLi>
+            <Card>
+                <Image
+                    src={props.images}
+                    alt={props.title}
+                    width={800}
+                    height={500}
+                />
+                <Principal>
+                    <h3>{props.title}</h3>
+                    <p>{props.description}</p>
+                </Principal>
+                <ValuesDiv>
+                    <h3>R$ {props.price}</h3>
+                    <p>{props.weight} KG</p>
+                    <button onClick={handleAddToCart}>Add to cart</button>
+                </ValuesDiv>
+            </Card>
+        </CarouselLi>
     );
 }

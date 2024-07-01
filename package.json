@@ -13,11 +13,13 @@
     "axios": "^1.7.2",
     "jwt-encode": "^1.0.1",
     "next": "14.2.4",
+    "primereact": "^10.6.6",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-responsive-carousel": "^3.2.23",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@types/jwt-encode": "^1.0.3",
