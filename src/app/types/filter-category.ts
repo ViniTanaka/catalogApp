@@ -3,5 +3,5 @@ export enum FilterCategory {
     "beauty",
     "fragrances",
     "groceries",
-    "home-decoration"
+    "furniture"
 }

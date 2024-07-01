@@ -1,6 +1,7 @@
 "use client"
 import { ReactNode, createContext, useState } from "react";
 import { FilterCategory } from "../types/filter-category";
+import { Header } from "../components/header/header";
 
 export const filterContext = createContext({
     search: "",
@@ -19,7 +20,7 @@ export function FilterContextProvider({children}:ProviderProps){
     const [page, setPage] = useState(0)
     const [category, setCategory] = useState(FilterCategory.ALL)
     return (
-        <filterContext.Provider value={{search, setSearch, page, setPage, category, setCategory}}>
+        <filterContext.Provider value={{search, setSearch, page, setPage, category, setCategory}}>  
             {children}
         </filterContext.Provider>
     )

@@ -17,7 +17,7 @@ const mountQuery = (category:FilterCategory) => {
 }
 
 const fetcher = (category:string): AxiosPromise<ProductsFetchResponse> => {
-  return axios.get('https://dummyjson.com/products' + category);
+  return axios.get('http://localhost:8080/api/products' + category);
 }
 export function useProducts() {
   const {category, search} = useFilter()
