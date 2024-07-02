@@ -1,29 +1,32 @@
 "use client";
+import { useCards } from "@/hooks/useCard";
 import sign from "jwt-encode";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import styled from "styled-components";
+import { Card } from "../types/card";
+import 'dotenv/config'
 
 const Container = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     width: 20vw;
 `;
 
 const PersonalInfo = styled.div`
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const CardInfo = styled.div`
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const Document = styled.input`
-    width:65%;
+    width: 65%;
 `;
 
 export default function Checkout() {
@@ -38,6 +41,11 @@ export default function Checkout() {
 
     const router = useRouter();
 
+    // You can define your handleNavigate function outside the handlePayment function
+    const handleNavigate = () => {
+        router.push("/");
+    };
+
     const handlePayment = () => {
         if (
             cardNumberRef.current &&
@@ -48,7 +56,7 @@ export default function Checkout() {
             birthdateRef.current &&
             installmentsRef.current
         ) {
-            const cardForm = {
+            const cardForm: Card = {
                 cardNumber: cardNumberRef.current.value,
                 nameCard: nameCardRef.current.value,
                 validate: validateRef.current.value,
@@ -57,22 +65,18 @@ export default function Checkout() {
                 birthdate: birthdateRef.current.value,
                 installments: installmentsRef.current.value
             };
-            
-            localStorage.setItem('card-form', JSON.stringify(sign(cardForm, secret)));
+
+            localStorage.setItem('card-form', JSON.stringify(sign(cardForm,secret)));
 
             localStorage.removeItem('cart-items');
+            console.log({'cardEncode':localStorage.getItem('card-form')})
             window.dispatchEvent(new CustomEvent('localStorageChange', {
-                detail: { key: 'cart-items', value: [] } 
+                detail: { key: 'cart-items', value: [] }
             }));
-
             handleNavigate();
         }
     };
-
-    const handleNavigate = () => {
-        router.push("/");
-    };
-
+    const { data } = useCards({'cardEncode':localStorage.getItem('card-form') ?? '{}'});
     return (
         <Container>
             <input ref={cardNumberRef} placeholder="Card number" maxLength={16} />
