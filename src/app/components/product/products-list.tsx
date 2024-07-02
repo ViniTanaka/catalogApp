@@ -13,6 +13,7 @@ const DivContainer = styled.div`
     border: 1px solid #ccc;
     background: white;
     max-height:35vh;
+    min-height: 300px;
     
 
 
@@ -27,6 +28,7 @@ const Carousel = styled.ul`
     width: 100%;
     height: 100%;
     max-height:35vh;
+    min-height: 300px;
 
     overflow: auto;
     scroll-snap-type: y mandatory;
