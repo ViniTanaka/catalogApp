@@ -16,8 +16,8 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-##Env
+## Env
 Was commited a .env.example, who show the necessary env to run the application. Remember witch the NEXT_PUBLIC_JWT_SECRET needs to be the same of the jwt.secret backend variable. And the NEXT_PUBLIC_URL_API is the local url from the backend
 
-##Application
+## Application
 Was used in this application Next.js, React-query tanstack, axios, jwt-encode, typescript, styled-components
