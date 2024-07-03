@@ -5,7 +5,6 @@ import { useFilter } from "./useFilter";
 import { FilterCategory } from "@/app/types/filter-category";
 import { getCategory } from "@/app/utils/get-category";
 import { useDeferredValue } from "react";
-import 'dotenv/config'
 
 
 
@@ -16,9 +15,9 @@ const mountQuery = (category:FilterCategory) => {
   }
   return searchCategory = `/category/${getCategory(category)}`
 }
-const url =process.env.NEXT_PUBLIC_URL_API as string;
+
 const fetcher = (category:string): AxiosPromise<ProductsFetchResponse> => {
-  return axios.get(`${url}/products` + category);
+  return axios.get('http://localhost:8080/api/products' + category);
 }
 export function useProducts() {
   const {category, search} = useFilter()
